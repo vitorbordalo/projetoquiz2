@@ -2,7 +2,7 @@
 
   <div>
 
-    <template v-if="this.question">
+    <template v-if="this.question" >
   
         <h1 v-html="this.question">
         </h1>
@@ -11,14 +11,14 @@
         <input 
           type="radio" 
           name="options" 
-          value="answer"
+          :value="answer"
           v-model="this.chosen_answer"
           >
     
         <label v-html="answer"></label><br>
       </template>
         
-      <button class="send" type="button">Send</button>
+      <button @click="this.submitAnswer()" class="send" type="button">Send</button>
 
     </template>
     
@@ -47,6 +47,21 @@ export default {
       answers.splice( Math.round(Math.random() * answers.length) , 0, this.correctAnswer);
       return answers;
     }
+  },
+  methods: {
+
+    submitAnswer() {
+      if (!this.chosen_answer) {
+        alert('Pick one of the options');
+      } else {
+        if (this.chosen_answer == this.correctAnswer) {
+          alert('You got it right!');
+        } else {
+          alert('You got it wrong!');
+        }
+      }
+    }
+
   },
   created() {
     this.axios
