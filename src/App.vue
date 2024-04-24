@@ -98,7 +98,7 @@ export default {
         this.incorrectAnswers = response.data.results[0].incorrect_answers;
         this.correctAnswer = response.data.results[0].correct_answer;
       })
-      }
+    }
   
 
   },
